@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Binary Search JS</title>
+</head>
+
+<style>
+  body {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  hr {
+    max-width: 35%;
+  }
+</style>
+
+<body>
+
+  <script>
+    //contents of the array
+    const array = [1, 4, 8, 12, 17, 19, 22];
+    //target value. Change to test!
+    const target = 17;
+
+    document.write("<h1>Binary Search</h1>");
+    document.write("Use Binary Search to find: " + target + " in the following array: " + array + "<hr /><br />");
+
+    /**
+     * @return {number}
+     */
+    function BinarySearch(array, low, high, target) {
+
+      document.write("Low = (Index" + low + ") " + array[low] + ", High = (Index" + high + ") " + array[high] + "<br /><br />");
+
+      //Base Condition
+      if (low > high) {
+        document.write(target + " is not in the array");
+        return -1;
+      }
+
+      //calculate the midpoint of array and print it
+      const mid = Math.floor((low + high) / 2);
+      document.write("mid = (Index" + mid + ") " + array[mid] + "<br /><br />");
+
+      if (target === array[mid]) {
+        document.write(array[mid] + " = " + target + "<br />Found at (Index" + mid + ")");
+      } else if (target < array[mid]) {
+        //if the target is less than the number at the midpoint of array move the high point 1 index to the left of the midpoint
+        document.write(array[mid] + " > " + target + "<br />High will move 1 index to the left of " + array[mid] + " <hr /><br />");
+        return (BinarySearch(array, low, mid - 1, target));
+      } else {
+        //if the target is greater than the number at the midpoint of array move the low point 1 index to the right of the midpoint
+        document.write(array[mid] + " < " + target + "<br />Low will move 1 index to the right of " + array[mid] + " <hr /><br />");
+        return (BinarySearch(array, mid + 1, high, target));
+      }
+    }
+    (BinarySearch(array, 0, 6, target));
+  </script>
+</body>
+
+</html>
